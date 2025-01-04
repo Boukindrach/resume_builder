@@ -28,11 +28,7 @@
               {{ headlines[2] }}
             </h4>
             <ul>
-              <li>Python</li>
-              <li>Pandas</li>
-              <li>SQL</li>
-              <li>R</li>
-              <li>Machine Learning</li>
+              <li v-for="(skill, index) in skills" :key="index">{{ skill }}</li>
             </ul>
           </div>
           <div class="resume-section">
@@ -55,17 +51,29 @@
           <h4 class="section-headline">
             {{ headlines[4] }}
           </h4>
-          <div>Senior software engieer</div>
-          <div>Blackrocket Inc., London, 2023 - Present</div>
+          <div v-for="(item, index) in experience" :key="index" class="inner-section">
+            <div>{{ item.title }}</div>
+            <div class="d-flex justify-content-between">
+              <div>{{ item.company }}, {{ item.location }}</div>
+              <div>{{ item.date }}</div>
+            </div>
+            <ul>
+              <li v-for="(desc, innerIndex) in item.description" :key="innerIndex">{{ desc }}</li>
+            </ul>
+          </div>
           <h4 class="section-headline">
             {{ headlines[5] }}
           </h4>
-          <div>Bachelor of Science in Computer Science</div>
-          <div>Evergreen State University, Springdale, 2018-2022</div>
-          <ul>
-            <li>Relevant coursework in database management, algorithms, and programming languages.</li>
-            <li>Senior project: 'Development of a Recommender System for Movie Ratings.'</li>
-          </ul>
+          <div v-for="(item, index) in education" :key="index">
+            <div>{{ item.title }}</div>
+            <div class="d-flex justify-content-between">
+              <div>{{ item.university }}, {{ item.location }}</div>
+              <div>{{ item.date }}</div>
+            </div>
+            <ul>
+              <li v-for="(desc, innerIndex) in item.description" :key="innerIndex">{{ desc }}</li>
+            </ul>
+          </div>
         </div>
       </div>
   </main>
@@ -86,6 +94,62 @@ export default {
         address: "nice place here"
       },
       skills: ["Python", "Pandas", "SQL", "R", "AI", "C++", "Machine Learning", "Hadoop", "TensorFlow", "PyTorch", "NLP"],
+      experience: [
+        {
+          title: "Senior Data Scientist",
+          company: "ABC Analytics Inc.",
+          location: "London",
+          date: "2022 - Present",
+          description: [
+            "Led a team of data scientists in developing advanced machine learning models for predictive analytics",
+            "Designed and implemented a recommendation system that boosted cross-selling, leading to a 20% increase in revenue",
+            "Conducted A/B testing and statistical analysis to optimize product features"
+          ]
+        },
+        {
+          title: "Data Scientist",
+          company: "XYZ Data Solutions",
+          location: "London",
+          date: "2017 - 2019",
+          description: [
+            "Developed and deployed machine learning models for fraud detection, reducing fraudulent transactions by 18%",
+            "Conducted in-depth exploratory data analysis to identify key trends and insights",
+            "Worked on data preprocessing, feature engineering, and model selection to improve model performance"
+        ]
+      },
+      {
+        title: "Data Scientist Trainee",
+        company: "Data Insights Ltd.",
+        location: "New York City",
+        date: "2016-2017",
+        description: [
+          "Collaborated with external partners to integrate third-party data sources, expanding the company's data assets and enhancing predictive modeling capabilities.",
+          "Presented data-driven insights and recommendations to executive leadership, influencing strategic decisions and driving revenue growth."
+          ]
+      }
+      ],
+      education: [
+      {
+      title: "Master of Science in Data Science",
+      university: "StellarTech University",
+      location: "Starville",
+      date: "2020-2022",
+      description: [
+        "Coursework included advanced machine learning, statistical modeling, and data visualization techniques.",
+        "Thesis: 'Predictive Modeling for Customer Churn in E-commerce using Random Forest.'"
+        ]
+      },
+      {
+      title: "Bachelor of Science in Computer Science",
+      university: "Evergreen State University",
+      location: "Springdale",
+      date: "2012-2015",
+      description: [
+        "Relevant coursework in database management, algorithms, and programming languages.",
+        "Senior project: 'Development of a Recommender System for Movie Ratings.'"
+        ]
+      }
+      ]
     }
   }
 }
@@ -170,5 +234,9 @@ export default {
     margin-left: auto;
     margin-right: auto;
     border-radius: 50%;
+  }
+
+  .inner-section {
+    margin-bottom: 20px;
   }
 </style>
